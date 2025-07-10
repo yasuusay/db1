@@ -91,7 +91,7 @@
       <input type="date" name="visit_date" id="visit_date" required>
 
       <label for="comment">コメント：</label>
-      <textarea name="comment" id="comment" rows="4" placeholder="例：スープが濃厚で最高でした！"></textarea>
+      <textarea name="comment" id="comment" rows="4" placeholder="例：スープが濃厚で最高！"></textarea>
 
       <label>評価：</label>
       <div class="rating-group">
@@ -109,6 +109,6 @@
     </fieldset>
   </form>
 
-  <a class="back-link" href="ramen_read.php">← 一覧画面へ戻る</a>
+  <a class="back-link" href="ramen_read.php">← 一覧画面へ</a>
 </body>
 </html>

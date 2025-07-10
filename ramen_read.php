@@ -1,11 +1,13 @@
 <?php
-// DB接続
-$dbn = 'mysql:dbname=gs_php;charset=utf8mb4;port=3306;host=localhost';
-$user = 'root';
-$pwd = '';
+// DB接続設定
+$db_name = "";
+$db_host = "";
+$db_id   = "";
+$db_pw   = "";
 
 try {
-  $pdo = new PDO($dbn, $user, $pwd);
+  $dsn = "mysql:dbname={$db_name};charset=utf8mb4;host={$db_host};port=3306";
+  $pdo = new PDO($dsn, $db_id, $db_pw);
 } catch (PDOException $e) {
   exit('DB接続エラー：' . $e->getMessage());
 }
@@ -23,14 +25,16 @@ foreach ($result as $record) {
   $comment = nl2br(htmlspecialchars($record['comment'], ENT_QUOTES, 'UTF-8'));
 
   $output .= "
-    <tr>
-      <td>{$record['visit_date']}</td>
-      <td>" . htmlspecialchars($record['shop_name'], ENT_QUOTES, 'UTF-8') . "</td>
-      <td>{$comment}</td>
-      <td class='center'>{$stars}</td>
-      <td class='center'>{$img}</td>
-    </tr>
-  ";
+ <tr>
+    <td>{$record['visit_date']}</td>
+    <td>" . htmlspecialchars($record['shop_name'], ENT_QUOTES, 'UTF-8') . "</td>
+    <td>{$comment}</td>
+    <td class='center'>{$stars}</td>
+    <td class='center'>{$img}</td>
+    <td class='center'><a href='ramen_delete.php?id={$record['id']}' onclick='return confirm(\"削除しますか？\");'>削除</a></td>
+    <td class='center'><a href='ramen_edit.php?id={$record['id']}'>編集</a></td>
+  </tr>
+";
 }
 ?>
 
@@ -122,6 +126,8 @@ foreach ($result as $record) {
           <th>コメント</th>
           <th>評価</th>
           <th>写真</th>
+          <th class="center">削除</th>
+          <th class="center">編集</th>
         </tr>
       </thead>
       <tbody>

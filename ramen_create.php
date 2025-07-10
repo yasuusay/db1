@@ -34,12 +34,14 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
 }
 
 // DB接続
-$dbn = 'mysql:dbname=gs_php;charset=utf8mb4;port=3306;host=localhost';
-$user = 'root';
-$pwd = '';
+$db_name = "basic-php_php02";
+$db_host = "mysql3109.db.sakura.ne.jp";
+$db_id   = "basic-php_php02";
+$db_pw   = "hogefuga123";
 
 try {
-  $pdo = new PDO($dbn, $user, $pwd);
+  $dsn = "mysql:host={$db_host};dbname={$db_name};charset=utf8mb4;port=3306";
+  $pdo = new PDO($dsn, $db_id, $db_pw);
 } catch (PDOException $e) {
   exit('DB接続エラー：' . $e->getMessage());
 }
